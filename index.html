@@ -20632,6 +20632,122 @@
       }
     })();
   </script>
+
+  <!-- Smooth FAQ Accordion -->
+  <style>
+    /* Override the static height:0 with smooth max-height transition */
+    .TtfZq {
+      height: auto !important;
+      max-height: 0 !important;
+      overflow: hidden !important;
+      transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                  padding 0.3s ease,
+                  opacity 0.35s ease !important;
+      opacity: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    .TtfZq.faq-open {
+      max-height: 600px !important;
+      opacity: 1 !important;
+      padding-top: 10px !important;
+      padding-bottom: 6px !important;
+    }
+
+    /* Smooth chevron rotation */
+    .ikJPRB .cKIQHS,
+    .ikJPRB i.cKIQHS {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      transform: rotate(0deg) !important;
+    }
+
+    .faq-open-header .cKIQHS,
+    .faq-open-header i.cKIQHS {
+      transform: rotate(180deg) !important;
+    }
+
+    /* FAQ item hover effect */
+    .eSsOvQ {
+      transition: background-color 0.25s ease, box-shadow 0.25s ease !important;
+      cursor: pointer;
+    }
+
+    .eSsOvQ:hover {
+      background-color: rgb(240, 232, 224) !important;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07) !important;
+    }
+
+    .eSsOvQ.faq-item-open {
+      background-color: rgb(250, 244, 238) !important;
+      box-shadow: 0 3px 16px rgba(0,0,0,0.10) !important;
+    }
+
+    /* Question header user-select */
+    .ikJPRB {
+      user-select: none;
+    }
+  </style>
+
+  <script>
+    (function () {
+      function initFaqAccordion() {
+        // Each .eSsOvQ is one FAQ item; inside it: .ikJPRB (header), .TtfZq (body)
+        var faqItems = document.querySelectorAll('.sc-gwZKzv.eSsOvQ, div[class*="eSsOvQ"]');
+
+        if (!faqItems.length) {
+          // Fallback: grab by structure – parent of .ikJPRB
+          var headers = document.querySelectorAll('.sc-fremEs.ikJPRB, div[class*="ikJPRB"]');
+          faqItems = [];
+          headers.forEach(function(h) { faqItems.push(h.parentElement); });
+        }
+
+        faqItems.forEach(function (item) {
+          var header = item.querySelector('.ikJPRB, [class*="ikJPRB"]');
+          var body   = item.querySelector('.TtfZq, [class*="TtfZq"]');
+
+          if (!header || !body) return;
+
+          // Make the entire item clickable
+          header.style.cursor = 'pointer';
+
+          header.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var isOpen = body.classList.contains('faq-open');
+
+            // Close all other open items
+            faqItems.forEach(function (other) {
+              var otherHeader = other.querySelector('.ikJPRB, [class*="ikJPRB"]');
+              var otherBody   = other.querySelector('.TtfZq, [class*="TtfZq"]');
+              if (otherBody && otherBody !== body) {
+                otherBody.classList.remove('faq-open');
+                other.classList.remove('faq-item-open');
+                if (otherHeader) otherHeader.classList.remove('faq-open-header');
+              }
+            });
+
+            // Toggle current
+            if (isOpen) {
+              body.classList.remove('faq-open');
+              item.classList.remove('faq-item-open');
+              header.classList.remove('faq-open-header');
+            } else {
+              body.classList.add('faq-open');
+              item.classList.add('faq-item-open');
+              header.classList.add('faq-open-header');
+            }
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFaqAccordion);
+      } else {
+        // DOM already ready
+        setTimeout(initFaqAccordion, 200);
+      }
+    })();
+  </script>
 </body>
 <!-- Mirrored from https://www.ladyagaonline.com/ by HTTrack Website Copier/3.x [XR&CO], Tue, 22 Sep 2026 19:08:04 GMT -->
 
