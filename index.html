@@ -20641,8 +20641,8 @@
       max-height: 0 !important;
       overflow: hidden !important;
       transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-                  padding 0.3s ease,
-                  opacity 0.35s ease !important;
+        padding 0.3s ease,
+        opacity 0.35s ease !important;
       opacity: 0 !important;
       padding-top: 0 !important;
       padding-bottom: 0 !important;
@@ -20675,12 +20675,12 @@
 
     .eSsOvQ:hover {
       background-color: rgb(240, 232, 224) !important;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.07) !important;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07) !important;
     }
 
     .eSsOvQ.faq-item-open {
       background-color: rgb(250, 244, 238) !important;
-      box-shadow: 0 3px 16px rgba(0,0,0,0.10) !important;
+      box-shadow: 0 3px 16px rgba(0, 0, 0, 0.10) !important;
     }
 
     /* Question header user-select */
@@ -20699,12 +20699,12 @@
           // Fallback: grab by structure – parent of .ikJPRB
           var headers = document.querySelectorAll('.sc-fremEs.ikJPRB, div[class*="ikJPRB"]');
           faqItems = [];
-          headers.forEach(function(h) { faqItems.push(h.parentElement); });
+          headers.forEach(function (h) { faqItems.push(h.parentElement); });
         }
 
         faqItems.forEach(function (item) {
           var header = item.querySelector('.ikJPRB, [class*="ikJPRB"]');
-          var body   = item.querySelector('.TtfZq, [class*="TtfZq"]');
+          var body = item.querySelector('.TtfZq, [class*="TtfZq"]');
 
           if (!header || !body) return;
 
@@ -20718,7 +20718,7 @@
             // Close all other open items
             faqItems.forEach(function (other) {
               var otherHeader = other.querySelector('.ikJPRB, [class*="ikJPRB"]');
-              var otherBody   = other.querySelector('.TtfZq, [class*="TtfZq"]');
+              var otherBody = other.querySelector('.TtfZq, [class*="TtfZq"]');
               if (otherBody && otherBody !== body) {
                 otherBody.classList.remove('faq-open');
                 other.classList.remove('faq-item-open');
